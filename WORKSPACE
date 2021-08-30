@@ -14,6 +14,21 @@ http_archive(
     ],
 )
 
+load("@org_tensorflow//third_party:repo.bzl", "tf_http_archive")
+
+tf_http_archive(
+    name = "pybind11",
+    urls = [
+        "https://storage.googleapis.com/colesbury/pybind11/archive/v2.6.2-nogil.tar.gz",
+        "https://github.com/colesbury/pybind11/archive/v2.6.2-nogil.tar.gz",
+    ],
+    sha256 = "258de86578becae9879245f03f28c3cfbb45e474e15f61c6a05a1940735e2032",
+    strip_prefix = "pybind11-2.6.2-nogil",
+    build_file = "//third_party:pybind11.BUILD",
+    patch_file = "//third_party:pybind11.patch",
+    system_build_file = "//third_party/systemlibs:pybind11.BUILD",
+)
+
 # For development, one can use a local TF repository instead.
 # local_repository(
 #    name = "org_tensorflow",
